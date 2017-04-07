@@ -64,6 +64,8 @@ public class UI extends JFrame
 	       main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       
 	       
+	       
+	       
 	}
 	
 }
