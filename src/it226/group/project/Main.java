@@ -13,6 +13,8 @@ package it226.group.project;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	
+    	UI gui = new UI();
+    	
     }
 }
