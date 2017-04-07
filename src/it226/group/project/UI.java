@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class UI extends JFrame
 {
@@ -17,10 +17,10 @@ public class UI extends JFrame
 	private JFrame main;
 	private Container mainPane;
 	private JPanel buttonPanel;
+	private JPanel inputPanel;
 	private JButton addAlarmButton;
 	private JButton addTimerButton;
 	private JLabel headerLabel;
-	private JTextArea clockDashboard;
 	private JScrollPane clockScrollPane;
 	
 	
@@ -41,8 +41,26 @@ public class UI extends JFrame
 		headerLabel.setText("Alarm And Time Dashboard");
 		
 		//Data to go in second row of mainPane
-		clockDashboard = new JTextArea(6,50);
-		clockScrollPane = new JScrollPane(clockDashboard);
+		inputPanel = new JPanel(true);
+		inputPanel.setLayout(new GridLayout(3,2));
+		
+		JTextField alarmDate = new JTextField();
+		JTextField alarmTime = new JTextField();
+		JTextField alarmMessage = new JTextField();
+		JTextField timerMins = new JTextField();
+		JTextField timerSecs = new JTextField();
+		JTextField timerMessage = new JTextField();
+		
+		inputPanel.add(alarmDate);
+		inputPanel.add(timerMins);
+		inputPanel.add(alarmTime);
+		inputPanel.add(timerSecs);
+		inputPanel.add(alarmMessage);
+		inputPanel.add(timerMessage);
+		
+		
+
+		
 		
 		//Data to go in third row of mainPane
 		buttonPanel = new JPanel(true);
@@ -54,14 +72,19 @@ public class UI extends JFrame
 		
 		//Adding Three Components to the mainPane
 		mainPane.add(headerLabel);
-		mainPane.add(clockScrollPane);
+		mainPane.add(inputPanel);
 		mainPane.add(buttonPanel);
+		
+		//Adding Listeners To Buttons
+		//addAlarmButton.addActionListener((ActionListener) this);
+		//addTimerButton.addActionListener((ActionListener) this);
+		
 		
 		main.setVisible(true);
 		
-		 //To clean up interface and close it when close the window 
-	       main.pack();
-	       main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    //To clean up interface and close it when close the window 
+	    main.pack();
+	    main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       
 	       
 	       
