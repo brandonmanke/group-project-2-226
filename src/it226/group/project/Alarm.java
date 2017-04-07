@@ -1,6 +1,6 @@
 package it226.group.project;
 
-import com.google.gson.*;
+//import com.google.gson.*;
 import java.util.Date;
 import java.util.Timer;
 
@@ -11,13 +11,15 @@ import java.util.Timer;
  */
 public class Alarm extends Clock {
     private Date date;
-    private Timer timer;
+    private Date timer;
     private String optionalMessage;
+    
+    public Alarm(){};
 
-    public Alarm(Date date, Timer timer, String optionalMessage) {
+    public Alarm(Date date, String optionalMessage) {
         super();
         this.date = date;
-        this.timer = timer;
+        //this.timer = timer;
         this.optionalMessage = optionalMessage;
     }
 
@@ -33,7 +35,7 @@ public class Alarm extends Clock {
 
     public Date getDate() { return date; }
 
-    public Timer getTimer() { return timer; }
+    public Date getTimer() { return timer; }
 
     public String getOptionalMessage() { return optionalMessage; }
 
@@ -43,7 +45,7 @@ public class Alarm extends Clock {
         this.date = date;
     }
 
-    public void setTimer(Timer timer) {
+    public void setTimer(Date timer) {
         this.timer = timer;
     }
 

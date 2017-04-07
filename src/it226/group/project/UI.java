@@ -23,6 +23,13 @@ public class UI extends JFrame
 	private JLabel headerLabel;
 	private JScrollPane clockScrollPane;
 	
+	private static JTextField alarmDate;
+	private static JTextField alarmTime;
+	private static JTextField alarmMessage;
+	private static JTextField timerMins;
+	private static JTextField timerSecs;
+	private static JTextField timerMessage;
+	
 	
 	public UI(){
 		
@@ -44,12 +51,12 @@ public class UI extends JFrame
 		inputPanel = new JPanel(true);
 		inputPanel.setLayout(new GridLayout(3,2));
 		
-		JTextField alarmDate = new JTextField();
-		JTextField alarmTime = new JTextField();
-		JTextField alarmMessage = new JTextField();
-		JTextField timerMins = new JTextField();
-		JTextField timerSecs = new JTextField();
-		JTextField timerMessage = new JTextField();
+		alarmDate = new JTextField();
+		alarmTime = new JTextField();
+		alarmMessage = new JTextField();
+		timerMins = new JTextField();
+		timerSecs = new JTextField();
+		timerMessage = new JTextField();
 		
 		inputPanel.add(alarmDate);
 		inputPanel.add(timerMins);
@@ -70,6 +77,9 @@ public class UI extends JFrame
 		buttonPanel.add(addAlarmButton);
 		buttonPanel.add(addTimerButton);
 		
+		addTimerButton.addActionListener(new ClockListeners());
+		addAlarmButton.addActionListener(new ClockListeners());
+		
 		//Adding Three Components to the mainPane
 		mainPane.add(headerLabel);
 		mainPane.add(inputPanel);
@@ -78,6 +88,10 @@ public class UI extends JFrame
 		//Adding Listeners To Buttons
 		//addAlarmButton.addActionListener((ActionListener) this);
 		//addTimerButton.addActionListener((ActionListener) this);
+		
+		//add names to JButtons
+		addAlarmButton.setName("alarm");
+		addTimerButton.setName("timer");
 		
 		
 		main.setVisible(true);
@@ -89,6 +103,31 @@ public class UI extends JFrame
 	       
 	       
 	       
+	}
+	
+	public static JTextField getAlarmDate(){
+		return alarmDate;
+	}
+	
+	public static JTextField getAlarmTime(){
+		return alarmTime;
+	}
+	
+	public static JTextField getAlarmMessage(){
+		return alarmMessage;
+	}
+	
+	public static JTextField getTimerMins(){
+		return timerMins;
+	}
+	
+	public static JTextField getTimerSecs(){
+		return timerSecs;
+	}
+	
+	public static JTextField getTimerMessage(){
+		return timerMessage;
+		
 	}
 	
 }

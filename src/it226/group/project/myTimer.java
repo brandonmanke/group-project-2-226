@@ -1,6 +1,6 @@
 package it226.group.project;
 
-import com.google.gson.*;
+//import com.google.gson.*;
 import java.util.Timer;
 
 /**
@@ -13,10 +13,12 @@ public class myTimer extends Clock {
     private String optionalMessage;
     private int minutes;
     private int seconds;
+    
+    public myTimer(){};
 
-    public myTimer(Timer timer, String optionalMessage, int minutes, int seconds) {
+    public myTimer(String optionalMessage, int minutes, int seconds) {
         super();
-        this.timer = timer;
+        timer = new Timer();
         this.optionalMessage = optionalMessage;
         this.minutes = minutes;
         this.seconds = seconds;
