@@ -17,7 +17,7 @@ import static it226.group.project.UI.*;
  */
 public class ClockListeners implements ActionListener {
 	
-	final long ms = 21600000;
+	final long TIME_ZONE_MS = 21600000;
 	
 	//date format
 	DateFormat startDate = new SimpleDateFormat("MM/dd/yyyy");
@@ -54,15 +54,14 @@ public class ClockListeners implements ActionListener {
 			Alarm alarm = new Alarm(finalDate, alarmMessageEntered);
 			
 			//get total time of date and time entered and add together
-			long liftoffTime = finalDate.getTime() + finalTimer.getTime() - ms ;
+			long liftoffTime = finalDate.getTime() + finalTimer.getTime() - TIME_ZONE_MS;
 			alarm.setDate(new Date(liftoffTime));
-			
-			alarm.writeToJson();
-			
-			
+
 			System.out.println(alarm.getDate());
 			System.out.println(alarm.getTime());		
 			System.out.println(alarm.getOptionalMessage());
+
+			alarm.writeToJson();
 		}
 		
 		//if button name equals timer, do alarm actions

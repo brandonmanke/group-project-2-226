@@ -1,6 +1,7 @@
 package it226.group.project;
 
-import java.util.Date;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * TODO: Test writing to json and reading back from it
@@ -14,6 +15,12 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) {
+        File file = new File("data/alarms.json");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         UI gui = new UI();
     }
 }

@@ -1,7 +1,7 @@
 package it226.group.project;
 
-//import com.google.gson.*;
 import java.util.Timer;
+import java.util.Date;
 
 /**
  * @author Brandon Manke
@@ -9,7 +9,8 @@ import java.util.Timer;
  * @author Ben Dworkin
  * http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html
  */
-public class AlarmTimer extends Clock {
+public class AlarmTimer extends Alarm {
+    private Date date;
     private Timer timer;
     private int minutes;
     private int seconds;
@@ -18,8 +19,8 @@ public class AlarmTimer extends Clock {
         super();
     }
 
-    public AlarmTimer(String optionalMessage, int minutes, int seconds) {
-        super(optionalMessage);
+    public AlarmTimer(Date date, String optionalMessage, int minutes, int seconds) {
+        super(date, optionalMessage);
         timer = new Timer();
         this.minutes = minutes;
         this.seconds = seconds;
@@ -34,6 +35,8 @@ public class AlarmTimer extends Clock {
     }
 
     // Getters
+
+    public Date getDate() { return date; }
 
     public int getMinutes() { return minutes; }
 
