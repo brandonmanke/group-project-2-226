@@ -17,9 +17,12 @@ import static it226.group.project.UI.*;
  */
 public class ClockListeners implements ActionListener {
 	
+	final long ms = 21600000;
+	
 	//date format
-	DateFormat startDate = new SimpleDateFormat("mm/dd/yyyy");
+	DateFormat startDate = new SimpleDateFormat("MM/dd/yyyy");
 	Date finalDate;
+
 	
 	//timer format
 	DateFormat timerFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -40,6 +43,7 @@ public class ClockListeners implements ActionListener {
 			//try to parse the input to a Date type
 			try {
 				finalDate = startDate.parse(alarmDateEntered);
+				finalTimer = timerFormat.parse(alarmTimeEntered);
 				
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
@@ -48,7 +52,17 @@ public class ClockListeners implements ActionListener {
 			
 			//create new alarm object with parameters and write to json file
 			Alarm alarm = new Alarm(finalDate, alarmMessageEntered);
+			
+			//get total time of date and time entered and add together
+			long liftoffTime = finalDate.getTime() + finalTimer.getTime() - ms ;
+			alarm.setDate(new Date(liftoffTime));
+			
 			alarm.writeToJson();
+			
+			
+			System.out.println(alarm.getDate());
+			System.out.println(alarm.getTime());		
+			System.out.println(alarm.getOptionalMessage());
 		}
 		
 		//if button name equals timer, do alarm actions

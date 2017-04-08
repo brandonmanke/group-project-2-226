@@ -1,8 +1,10 @@
 package it226.group.project;
 
-import com.google.gson.*;
-
 import java.util.Date;
+
+//import com.google.gson.*;
+
+
 
 /**
  * @author Brandon Manke
@@ -28,11 +30,17 @@ public class Alarm extends Clock {
     // Getters
 
     public Date getDate() { return date; }
+    
+    public long getTime() { return date.getTime(); }
 
     // Setters
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    
+    public void setTime(long time){
+    	this.date.setTime(time);
     }
 
 }

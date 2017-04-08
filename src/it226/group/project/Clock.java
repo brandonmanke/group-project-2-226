@@ -1,6 +1,6 @@
 package it226.group.project;
 
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,10 +30,10 @@ public abstract class Clock {
     }
 
     public Clock writeToJson() {
-        Gson gson = new Gson();
+        //Gson gson = new Gson();
         File file = new File("data/alarms.json");
         try (FileWriter writer = new FileWriter(file)) {
-            gson.toJson(this, writer);
+           // gson.toJson(this, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
