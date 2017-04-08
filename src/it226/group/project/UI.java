@@ -11,8 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class UI extends JFrame
-{
+public class UI extends JFrame {
 	
 	private JFrame main;
 	private Container mainPane;
@@ -29,16 +28,13 @@ public class UI extends JFrame
 	private static JTextField timerMins;
 	private static JTextField timerSecs;
 	private static JTextField timerMessage;
-	
-	
-	public UI(){
-		
-		
+
+	public UI() {
+
 		main  = new JFrame();
 		main.setTitle("Project 2");
 		main.setSize(500, 500);
-		
-		
+
 		//Panel to hold all other panels in the UI
 	    Container mainPane = main.getContentPane();
 		mainPane.setLayout(new GridLayout(3,1));
@@ -64,11 +60,7 @@ public class UI extends JFrame
 		inputPanel.add(timerSecs);
 		inputPanel.add(alarmMessage);
 		inputPanel.add(timerMessage);
-		
-		
 
-		
-		
 		//Data to go in third row of mainPane
 		buttonPanel = new JPanel(true);
 		buttonPanel.setLayout(new FlowLayout());
@@ -92,17 +84,13 @@ public class UI extends JFrame
 		//add names to JButtons
 		addAlarmButton.setName("alarm");
 		addTimerButton.setName("timer");
-		
-		
+
 		main.setVisible(true);
 		
 	    //To clean up interface and close it when close the window 
 	    main.pack();
 	    main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	       
-	       
-	       
-	       
+
 	}
 	
 	public static JTextField getAlarmDate(){

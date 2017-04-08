@@ -7,19 +7,20 @@ import java.util.Timer;
  * @author Brandon Manke
  * @author Colin Koepke
  * @author Ben Dworkin
+ * http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html
  */
-public class myTimer extends Clock {
+public class AlarmTimer extends Clock {
     private Timer timer;
-    private String optionalMessage;
     private int minutes;
     private int seconds;
     
-    public myTimer(){};
-
-    public myTimer(String optionalMessage, int minutes, int seconds) {
+    public AlarmTimer() {
         super();
+    }
+
+    public AlarmTimer(String optionalMessage, int minutes, int seconds) {
+        super(optionalMessage);
         timer = new Timer();
-        this.optionalMessage = optionalMessage;
         this.minutes = minutes;
         this.seconds = seconds;
     }
@@ -38,8 +39,6 @@ public class myTimer extends Clock {
 
     public int getSeconds() { return seconds; }
 
-    public String getOptionalMessage() { return optionalMessage; }
-
     public Timer getTimer() { return timer; }
 
     // Setters
@@ -50,10 +49,6 @@ public class myTimer extends Clock {
 
     public void setSeconds(int seconds) {
         this.seconds = seconds;
-    }
-
-    public void setOptionalMessage(String optionalMessage) {
-        this.optionalMessage = optionalMessage;
     }
 
     public void setTimer(Timer timer) {

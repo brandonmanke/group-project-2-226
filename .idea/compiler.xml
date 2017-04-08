@@ -25,8 +25,8 @@
         <module name="group-project-2-226" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="group-project-2-226" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="group-project-2-226" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
