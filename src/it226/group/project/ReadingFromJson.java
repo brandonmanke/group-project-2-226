@@ -15,16 +15,16 @@ import java.util.ArrayList;
  */
 public final class ReadingFromJson {
 
-    public static ArrayList<Clock> readFromJson() {
+    public static ArrayList<Alarm> readFromJson() {
         File file = new File("data/alarms.json");
-        ArrayList<Clock> list = new ArrayList<>();
-        Clock[] cArr = null;
+        ArrayList<Alarm> list = new ArrayList<>();
+        Alarm[] alarms = null;
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new FileReader(file));
-            cArr = gson.fromJson(reader, Clock[].class);
-            for (Clock c : cArr) {
-                list.add(c);
+            alarms = gson.fromJson(reader, Alarm[].class);
+            for (Alarm a : alarms) {
+                list.add(a);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

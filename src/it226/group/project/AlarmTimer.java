@@ -9,50 +9,45 @@ import java.util.Date;
  * @author Ben Dworkin
  * http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html
  */
-public class AlarmTimer extends Alarm {
-    private Date date;
+public class AlarmTimer extends Alarm { // implements IClock?? maybe otherwise we don't need clock interface
     private Timer timer;
-    private int minutes;
-    private int seconds;
+    private long milliseconds;
     
     public AlarmTimer() {
         super();
     }
 
-    public AlarmTimer(Date date, String optionalMessage, int minutes, int seconds) {
+    public AlarmTimer(Date date, int hours, int minutes, int seconds, String optionalMessage) {
         super(date, optionalMessage);
         timer = new Timer();
-        this.minutes = minutes;
-        this.seconds = seconds;
+        milliseconds = (seconds * 1000) + (minutes * 60000) + (hours * 3600000);
+        date = new Date(milliseconds);
+        this.setDate(date);
     }
 
-    public Clock writeToJson() {
-        return null;
-    }
+    //public Alarm writeToJson() {
+    //    return null;
+    //}
 
-    public Clock readFromJson() {
-        return null;
+    //public Alarm readFromJson() {
+    //    return null;
+    //}
+
+    private Date convertTimerToDate() {
+
+
+        return this.getDate();
     }
 
     // Getters
 
-    public Date getDate() { return date; }
-
-    public int getMinutes() { return minutes; }
-
-    public int getSeconds() { return seconds; }
+    public long getMilliseconds() { return milliseconds; }
 
     public Timer getTimer() { return timer; }
 
     // Setters
 
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
-    }
+    public void setMilliseconds(long milliseconds) { this.milliseconds = milliseconds; }
 
     public void setTimer(Timer timer) {
         this.timer = timer;

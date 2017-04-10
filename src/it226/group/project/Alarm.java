@@ -7,16 +7,26 @@ import java.util.Date;
  * @author Colin Koepke
  * @author Ben Dworkin
  */
-public class Alarm extends Clock {
+public class Alarm implements IClock {
     private Date date;
+    private String optionalMessage;
 
     public Alarm() {
         super();
     }
 
     public Alarm(Date date, String optionalMessage) {
-        super(date, optionalMessage);
         this.date = date;
+        this.optionalMessage = optionalMessage;
+    }
+
+    public Alarm writeToJson() {
+        JsonWriter.addToJson(this);
+        return this;
+    }
+
+    public Alarm readJson() {
+        return null;
     }
 
     // Getters
@@ -24,6 +34,8 @@ public class Alarm extends Clock {
     public Date getDate() { return date; }
 
     public long getTime() { return date.getTime(); }
+
+    public String getOptionalMessage() { return optionalMessage; }
 
     // Setters
 
@@ -34,5 +46,19 @@ public class Alarm extends Clock {
     public void setTime(long time){
     	this.date.setTime(time);
     }
+
+    public void setOptionalMessage(String optionalMessage) {
+        this.optionalMessage = optionalMessage;
+    }
+
+    /*
+
+        public Clock writeToJson() {
+        JsonWriter.initializeWriter(ReadingFromJson.readFromJson());
+        JsonWriter.addToJson(this);
+        return this;
+        }
+
+     */
 
 }

@@ -14,15 +14,15 @@ import java.util.ArrayList;
  */
 public final class JsonWriter {
     // this is a really bad way of doing this writing, I'm so sorry.
-    private static ArrayList<Clock> list = new ArrayList<>();
+    private static ArrayList<Alarm> list = new ArrayList<>();
 
-    public static ArrayList<Clock> getList() { return list; }
+    public static ArrayList<Alarm> getList() { return list; }
 
-    public static void initializeWriter(ArrayList<Clock> list) {
+    public static void initializeWriter(ArrayList<Alarm> list) {
         JsonWriter.list = list;
     }
 
-    public static void addToJson(Clock obj) {
+    public static void addToJson(Alarm obj) {
         list.add(obj);
         Gson gson = new Gson();
         File file = new File("data/alarms.json");
@@ -32,7 +32,8 @@ public final class JsonWriter {
             e.printStackTrace();
         }
         //list = ReadingFromJson.readFromJson();
-        for (Clock c : ReadingFromJson.readFromJson()) {
+        for (Alarm a : ReadingFromJson.readFromJson()) {
+            System.out.println("Things in json: " + a.getTime());
         }
     }
 }
