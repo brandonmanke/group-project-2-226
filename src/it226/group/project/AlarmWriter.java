@@ -33,7 +33,7 @@ public final class AlarmWriter {
         }
         //list = ReadingFromJson.readFromJson();
         for (Alarm a : ReadingFromJson.alarmsFromJson()) {
-            System.out.println("Things in json: " + a.getTime());
+            System.out.println("Things in alarm json: " + a.getTime());
         }
     }
 }

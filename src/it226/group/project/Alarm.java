@@ -25,10 +25,6 @@ public class Alarm {
         return this;
     }
 
-    public Alarm readJson() {
-        return null;
-    }
-
     // Getters
 
     public Date getDate() { return date; }
@@ -50,15 +46,5 @@ public class Alarm {
     public void setOptionalMessage(String optionalMessage) {
         this.optionalMessage = optionalMessage;
     }
-
-    /*
-
-        public Clock writeToJson() {
-        JsonWriter.initializeWriter(ReadingFromJson.readFromJson());
-        JsonWriter.addToJson(this);
-        return this;
-        }
-
-     */
 
 }

@@ -35,8 +35,8 @@ public final class TimerWriter {
             e.printStackTrace();
         }
         //list = ReadingFromJson.readFromJson();
-        //for (Alarm a : ReadingFromJson.alarmsFromJson()) {
-        //    System.out.println("Things in json: " + a.getTime());
-        //}
+        for (AlarmTimer t : ReadingFromJson.timersFromJson()) {
+            System.out.println("Things in timer json: " + t.getTime());
+        }
     }
 }

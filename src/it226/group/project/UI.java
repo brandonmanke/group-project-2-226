@@ -141,6 +141,8 @@ public class UI extends JFrame {
 	public static JTextField getAlarmMessage(){
 		return alarmMessage;
 	}
+
+	public static JTextField getTimerHr() { return timerHr; }
 	
 	public static JTextField getTimerMins(){
 		return timerMins;

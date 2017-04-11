@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -16,19 +17,48 @@ import java.util.ArrayList;
 public final class ReadingFromJson {
 
     public static ArrayList<Alarm> alarmsFromJson() {
-        File file = new File("data/alarms.json");
+        File alarmFile = new File("data/alarms.json");
         ArrayList<Alarm> list = new ArrayList<>();
         Alarm[] alarms = null;
         try {
             Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new FileReader(file));
+            JsonReader reader = new JsonReader(new FileReader(alarmFile));
             alarms = gson.fromJson(reader, Alarm[].class);
             for (Alarm a : alarms) {
                 list.add(a);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("File is empty");
         }
         return list;
+    }
+
+    public static ArrayList<AlarmTimer> timersFromJson() {
+        File timerFile = new File("data/timers.json");
+        ArrayList<AlarmTimer> list = new ArrayList<>();
+        AlarmTimer[] timers = null;
+        try {
+            Gson gson = new Gson();
+            JsonReader reader = new JsonReader(new FileReader(timerFile));
+            timers = gson.fromJson(reader, AlarmTimer[].class);
+            for (AlarmTimer t : timers) {
+                list.add(t);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("File is empty");
+        }
+        return list;
+    }
+
+    public static void initializeFile(File file) {
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

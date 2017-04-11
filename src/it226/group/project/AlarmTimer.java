@@ -28,10 +28,6 @@ public class AlarmTimer extends Alarm {
         return this;
     }
 
-    //public Alarm readFromJson() {
-    //    return null;
-    //}
-
     private Date convertTimerToDate() {
         return this.getDate();
     }
@@ -40,14 +36,8 @@ public class AlarmTimer extends Alarm {
 
     public long getMilliseconds() { return milliseconds; }
 
-    //public Timer getTimer() { return timer; }
-
     // Setters
 
     public void setMilliseconds(long milliseconds) { this.milliseconds = milliseconds; }
-
-    //public void setTimer(Timer timer) {
-    //    this.timer = timer;
-    //}
 
 }

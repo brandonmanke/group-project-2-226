@@ -66,23 +66,21 @@ public class ClockListeners implements ActionListener {
 		
 		//if button name equals timer, do alarm actions
 		if (buttonName.equals("timer")) {
-			
+
+			String timerHoursEntered = getTimerHr().getText();
 			String timerMinsEntered = getTimerMins().getText();
 			String timerSecsEntered = getTimerSecs().getText();
 			String timerMessageEntered = getTimerMessage().getText();
 			
 			//change string input to an int.... still needs exception handling
-			int timerSecsInt = Integer.parseInt(timerSecsEntered);
+			int timerHoursInt = Integer.parseInt(timerHoursEntered);
 			int timerMinsInt = Integer.parseInt(timerMinsEntered);
+			int timerSecsInt = Integer.parseInt(timerSecsEntered);
 
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
-			AlarmTimer timer = new AlarmTimer(new Date(), 0, timerMinsInt, timerSecsInt, timerMessageEntered);
+			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered);
 			timer.writeToJson();
-			
-			System.out.println("-----" + timerSecsInt+ "-----");
-			System.out.println("-----" + timerMinsInt + "-----");
-			System.out.println("-----" + timerMessageEntered + "-----");
 		}
 
 	}
