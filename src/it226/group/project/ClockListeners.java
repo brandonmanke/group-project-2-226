@@ -77,8 +77,8 @@ public class ClockListeners implements ActionListener {
 
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
-			//AlarmTimer timer = new AlarmTimer(timerMessageEntered, timerMinsInt, timerSecsInt);
-			//timer.writeToJson();
+			AlarmTimer timer = new AlarmTimer(new Date(), 0, timerMinsInt, timerSecsInt, timerMessageEntered);
+			timer.writeToJson();
 			
 			System.out.println("-----" + timerSecsInt+ "-----");
 			System.out.println("-----" + timerMinsInt + "-----");

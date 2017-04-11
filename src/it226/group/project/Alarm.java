@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Colin Koepke
  * @author Ben Dworkin
  */
-public class Alarm implements IClock {
+public class Alarm {
     private Date date;
     private String optionalMessage;
 
@@ -21,7 +21,7 @@ public class Alarm implements IClock {
     }
 
     public Alarm writeToJson() {
-        JsonWriter.addToJson(this);
+        AlarmWriter.addToJson(this);
         return this;
     }
 

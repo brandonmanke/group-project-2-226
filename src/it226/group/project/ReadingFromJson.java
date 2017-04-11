@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public final class ReadingFromJson {
 
-    public static ArrayList<Alarm> readFromJson() {
+    public static ArrayList<Alarm> alarmsFromJson() {
         File file = new File("data/alarms.json");
         ArrayList<Alarm> list = new ArrayList<>();
         Alarm[] alarms = null;

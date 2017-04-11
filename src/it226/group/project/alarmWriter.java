@@ -12,14 +12,14 @@ import java.util.ArrayList;
  * @author Colin Koepke
  * @author Ben Dworkin
  */
-public final class JsonWriter {
+public final class AlarmWriter {
     // this is a really bad way of doing this writing, I'm so sorry.
     private static ArrayList<Alarm> list = new ArrayList<>();
 
     public static ArrayList<Alarm> getList() { return list; }
 
     public static void initializeWriter(ArrayList<Alarm> list) {
-        JsonWriter.list = list;
+        AlarmWriter.list = list;
     }
 
     public static void addToJson(Alarm obj) {
@@ -32,7 +32,7 @@ public final class JsonWriter {
             e.printStackTrace();
         }
         //list = ReadingFromJson.readFromJson();
-        for (Alarm a : ReadingFromJson.readFromJson()) {
+        for (Alarm a : ReadingFromJson.alarmsFromJson()) {
             System.out.println("Things in json: " + a.getTime());
         }
     }

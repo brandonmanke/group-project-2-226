@@ -9,8 +9,7 @@ import java.util.Date;
  * @author Ben Dworkin
  * http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html
  */
-public class AlarmTimer extends Alarm { // implements IClock?? maybe otherwise we don't need clock interface
-    private Timer timer;
+public class AlarmTimer extends Alarm {
     private long milliseconds;
     
     public AlarmTimer() {
@@ -19,23 +18,21 @@ public class AlarmTimer extends Alarm { // implements IClock?? maybe otherwise w
 
     public AlarmTimer(Date date, int hours, int minutes, int seconds, String optionalMessage) {
         super(date, optionalMessage);
-        timer = new Timer();
         milliseconds = (seconds * 1000) + (minutes * 60000) + (hours * 3600000);
         date = new Date(milliseconds);
         this.setDate(date);
     }
 
-    //public Alarm writeToJson() {
-    //    return null;
-    //}
+    public AlarmTimer writeToJson() {
+        TimerWriter.addToJson(this);
+        return this;
+    }
 
     //public Alarm readFromJson() {
     //    return null;
     //}
 
     private Date convertTimerToDate() {
-
-
         return this.getDate();
     }
 
@@ -43,14 +40,14 @@ public class AlarmTimer extends Alarm { // implements IClock?? maybe otherwise w
 
     public long getMilliseconds() { return milliseconds; }
 
-    public Timer getTimer() { return timer; }
+    //public Timer getTimer() { return timer; }
 
     // Setters
 
     public void setMilliseconds(long milliseconds) { this.milliseconds = milliseconds; }
 
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
+    //public void setTimer(Timer timer) {
+    //    this.timer = timer;
+    //}
 
 }

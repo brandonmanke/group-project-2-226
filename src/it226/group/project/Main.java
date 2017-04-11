@@ -16,8 +16,10 @@ public class Main {
 
     public static void main(String[] args) {
         File file = new File("data/alarms.json");
+        File file2 = new File("data/timers.json");
         try {
             file.createNewFile();
+            file2.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
