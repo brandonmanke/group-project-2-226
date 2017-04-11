@@ -3,8 +3,11 @@ package it226.group.project;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -44,7 +47,8 @@ public class UI extends JFrame
 		inputPanel = new JPanel(true);
 		inputPanel.setLayout(new GridLayout(3,2));
 		
-		JTextField alarmDate = new JTextField();
+		DateFormat format = new SimpleDateFormat("MM/DD/YYYY");
+		JFormattedTextField alarmDate = new JFormattedTextField(format);
 		JTextField alarmTime = new JTextField();
 		JTextField alarmMessage = new JTextField();
 		JTextField timerMins = new JTextField();
@@ -57,10 +61,6 @@ public class UI extends JFrame
 		inputPanel.add(timerSecs);
 		inputPanel.add(alarmMessage);
 		inputPanel.add(timerMessage);
-		
-		
-
-		
 		
 		//Data to go in third row of mainPane
 		buttonPanel = new JPanel(true);
@@ -79,15 +79,12 @@ public class UI extends JFrame
 		//addAlarmButton.addActionListener((ActionListener) this);
 		//addTimerButton.addActionListener((ActionListener) this);
 		
-		
 		main.setVisible(true);
 		
 	    //To clean up interface and close it when close the window 
 	    main.pack();
 	    main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	       
-	       
-	       
+    
 	       
 	}
 	
