@@ -1,26 +1,27 @@
 package it226.group.project;
 
-import java.awt.Container;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 public class UI extends JFrame {
 	
 	private JFrame main;
-	private Container mainPane;
-	private JPanel buttonPanel;
-	private JPanel inputPanel;
 	private JButton addAlarmButton;
 	private JButton addTimerButton;
-	private JLabel headerLabel;
-	private JScrollPane clockScrollPane;
+	private JLabel headerLabelAlarm;
+	private JLabel headerLabelTimer;
+	
+	private JTabbedPane tabbedPane;
+	private JPanel alarmPanel;
+	private JPanel timerPanel;
 	
 	private static JTextField alarmDate;
 	private static JTextField alarmTime;
@@ -28,58 +29,94 @@ public class UI extends JFrame {
 	private static JTextField timerMins;
 	private static JTextField timerSecs;
 	private static JTextField timerMessage;
+	private static JTextField timerHr;
+	
+	private JLabel hourLabel;
+	private JLabel dateLabel;
+	private JLabel timeLabel;
+	private JLabel alarmMessLabel;
+	private JLabel minsLabel;
+	private JLabel secsLabel;
+	private JLabel timerMessLabel;
 
 	public UI() {
 
 		main  = new JFrame();
 		main.setTitle("Project 2");
 		main.setSize(500, 500);
-
-		//Panel to hold all other panels in the UI
-	    Container mainPane = main.getContentPane();
-		mainPane.setLayout(new GridLayout(3,1));
 		
-		//Data to go in first row of mainPane
-		headerLabel = new JLabel("", JLabel.CENTER);
-		headerLabel.setText("Alarm And Time Dashboard");
+		//Making a tabbed pane 
+		tabbedPane = new JTabbedPane();
 		
-		//Data to go in second row of mainPane
-		inputPanel = new JPanel(true);
-		inputPanel.setLayout(new GridLayout(3,2));
+		//First tab for the alarms 
+		alarmPanel = new JPanel(true);
+		tabbedPane.addTab("Add Alarm", alarmPanel);
+		alarmPanel.setLayout(new GridLayout(8,1));
 		
+		//Second Tab for timers
+		timerPanel = new JPanel(true);
+		tabbedPane.addTab("Add Timer", timerPanel);
+		timerPanel.setLayout(new GridLayout(10,1));
+		
+		main.add(tabbedPane);
+		
+		//Headers for two panels
+		headerLabelAlarm = new JLabel("", JLabel.CENTER);
+		headerLabelAlarm.setText("Add Alarm Dashboard");
+		headerLabelAlarm.setFont(new Font("Serif", Font.BOLD, 20));
+		headerLabelTimer = new JLabel("", JLabel.CENTER);
+		headerLabelTimer.setText("Add Timer Dashboard");
+		headerLabelTimer.setFont(new Font("Serif", Font.BOLD, 20));
+		headerLabelAlarm.setForeground(Color.blue);
+		headerLabelTimer.setForeground(Color.blue);
+		
+		//Text fields for two panels 		
 		alarmDate = new JTextField();
 		alarmTime = new JTextField();
 		alarmMessage = new JTextField();
 		timerMins = new JTextField();
 		timerSecs = new JTextField();
 		timerMessage = new JTextField();
+		timerHr = new JTextField();
 		
-		inputPanel.add(alarmDate);
-		inputPanel.add(timerMins);
-		inputPanel.add(alarmTime);
-		inputPanel.add(timerSecs);
-		inputPanel.add(alarmMessage);
-		inputPanel.add(timerMessage);
+		//Labels for the two panels
+		dateLabel = new JLabel("Alarm Date (MM/DD/YYYY)", JLabel.CENTER);
+		timeLabel = new JLabel("Alarm Time (HH:MM:SS am/pm)", JLabel.CENTER);
+		alarmMessLabel= new JLabel("Alarm Message", JLabel.CENTER);
+		minsLabel = new JLabel("Timer Minutes", JLabel.CENTER);
+		secsLabel = new JLabel("Timer Seconds", JLabel.CENTER);
+		timerMessLabel= new JLabel("Timer Message", JLabel.CENTER);
+		hourLabel= new JLabel("Timer Hours", JLabel.CENTER);
 
-		//Data to go in third row of mainPane
-		buttonPanel = new JPanel(true);
-		buttonPanel.setLayout(new FlowLayout());
+		//Buttons for the two panels 
 		addAlarmButton = new JButton("Add Alarm");
 		addTimerButton = new JButton("Add Timer");
-		buttonPanel.add(addAlarmButton);
-		buttonPanel.add(addTimerButton);
 		
+		//To be able to listen to when the button is clicked
 		addTimerButton.addActionListener(new ClockListeners());
 		addAlarmButton.addActionListener(new ClockListeners());
 		
-		//Adding Three Components to the mainPane
-		mainPane.add(headerLabel);
-		mainPane.add(inputPanel);
-		mainPane.add(buttonPanel);
+		//Adding the components to the panels 
+		alarmPanel.add(headerLabelAlarm);
+		alarmPanel.add(dateLabel);
+		alarmPanel.add(alarmDate);
+		alarmPanel.add(timeLabel);
+		alarmPanel.add(alarmTime);
+		alarmPanel.add(alarmMessLabel);
+		alarmPanel.add(alarmMessage);
+		alarmPanel.add(addAlarmButton);
 		
-		//Adding Listeners To Buttons
-		//addAlarmButton.addActionListener((ActionListener) this);
-		//addTimerButton.addActionListener((ActionListener) this);
+		timerPanel.add(headerLabelTimer);
+		timerPanel.add(hourLabel);
+		timerPanel.add(timerHr);
+		timerPanel.add(minsLabel);
+		timerPanel.add(timerMins);
+		timerPanel.add(secsLabel);
+		timerPanel.add(timerSecs);
+		timerPanel.add(timerMessLabel);
+		timerPanel.add(timerMessage);
+		timerPanel.add(addTimerButton);
+		
 		
 		//add names to JButtons
 		addAlarmButton.setName("alarm");
