@@ -1,31 +1,31 @@
 package it226.group.project;
 
-import com.google.gson.*;
 import java.util.Date;
-import java.util.Timer;
 
 /**
  * @author Brandon Manke
  * @author Colin Koepke
  * @author Ben Dworkin
  */
-public class Alarm extends Clock {
+public class Alarm {
     private Date date;
-    private Timer timer;
     private String optionalMessage;
 
-    public Alarm(Date date, Timer timer, String optionalMessage) {
+    public Alarm() {
         super();
+    }
+
+    public Alarm(Date date, String optionalMessage) {
         this.date = date;
-        this.timer = timer;
         this.optionalMessage = optionalMessage;
     }
 
-    public Clock writeToJson() {
-        return null;
+    public Alarm writeToJson() {
+        AlarmWriter.addToJson(this);
+        return this;
     }
 
-    public Clock readFromJson() {
+    public Alarm readJson() {
         return null;
     }
 
@@ -33,7 +33,7 @@ public class Alarm extends Clock {
 
     public Date getDate() { return date; }
 
-    public Timer getTimer() { return timer; }
+    public long getTime() { return date.getTime(); }
 
     public String getOptionalMessage() { return optionalMessage; }
 
@@ -43,12 +43,22 @@ public class Alarm extends Clock {
         this.date = date;
     }
 
-    public void setTimer(Timer timer) {
-        this.timer = timer;
+    public void setTime(long time){
+    	this.date.setTime(time);
     }
 
     public void setOptionalMessage(String optionalMessage) {
         this.optionalMessage = optionalMessage;
     }
+
+    /*
+
+        public Clock writeToJson() {
+        JsonWriter.initializeWriter(ReadingFromJson.readFromJson());
+        JsonWriter.addToJson(this);
+        return this;
+        }
+
+     */
 
 }
