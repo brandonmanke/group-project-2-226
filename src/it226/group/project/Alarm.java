@@ -1,6 +1,8 @@
 package it226.group.project;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
 
 /**
  * @author Brandon Manke
@@ -14,17 +16,19 @@ public class Alarm {
     public Alarm() {
         super();
     }
+    
 
     public Alarm(Date date, String optionalMessage) {
         this.date = date;
         this.optionalMessage = optionalMessage;
+        
     }
 
     public Alarm writeToJson() {
         AlarmWriter.addToJson(this);
         return this;
     }
-
+    
     // Getters
 
     public Date getDate() { return date; }

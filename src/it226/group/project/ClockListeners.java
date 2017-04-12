@@ -27,6 +27,18 @@ public class ClockListeners implements ActionListener {
 	//timer format
 	DateFormat timerFormat = new SimpleDateFormat("hh:mm:ss a");
 	Date finalTimer;
+	
+	
+	String year;
+	String month;
+	String day;
+	String hour;
+	String minute;
+	String seconds;
+	
+	String fullDate;
+	
+	Countdown countdown = new Countdown();
 
 	public void actionPerformed(ActionEvent e) {
 		
@@ -50,6 +62,10 @@ public class ClockListeners implements ActionListener {
 				e1.printStackTrace();
 			}
 			
+			
+			
+			
+			
 			//create new alarm object with parameters and write to json file
 			Alarm alarm = new Alarm(finalDate, alarmMessageEntered);
 			
@@ -62,6 +78,8 @@ public class ClockListeners implements ActionListener {
 			System.out.println(alarm.getOptionalMessage());
 
 			alarm.writeToJson();
+			countdown.runAlarm();
+			
 		}
 		
 		//if button name equals timer, do alarm actions

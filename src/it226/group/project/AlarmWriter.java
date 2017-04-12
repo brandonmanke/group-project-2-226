@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public final class AlarmWriter {
     // this is a really bad way of doing this writing, I'm so sorry.
-    private static ArrayList<Alarm> list = new ArrayList<>();
+    private static ArrayList<Alarm> list = new ArrayList<Alarm>();
 
     public static ArrayList<Alarm> getList() { return list; }
 
@@ -32,8 +32,8 @@ public final class AlarmWriter {
             e.printStackTrace();
         }
         //list = ReadingFromJson.readFromJson();
-        for (Alarm a : ReadingFromJson.alarmsFromJson()) {
+       /* for (Alarm a : ReadingFromJson.alarmsFromJson()) {
             System.out.println("Things in alarm json: " + a.getTime());
-        }
+        }*/
     }
 }
