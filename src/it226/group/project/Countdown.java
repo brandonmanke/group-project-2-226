@@ -15,69 +15,137 @@ public class Countdown {
 	}
 
 	Timer timer;
+	Timer snooze;
 	Calendar calendar;
-
-	ArrayList<Alarm> listOfAlarms = AlarmWriter.getList();
-	ArrayList<AlarmTimer> listOfTimers = TimerWriter.getList();
-
-	String[] buttons = {"Dismiss", "Snooze"};
 	
 	String optionalMessage;
 	
+	boolean isFired;
+	
+	int result;
+
+	ArrayList<Alarm> listOfAlarms = AlarmWriter.getList();
+	ArrayList<AlarmTimer> listOfTimers = TimerWriter.getList();
+	
+
+	
+	Object[] options = {"Snooze", "Dismiss"};
+	
 	public void runAlarm() {
+		
 		timer = new Timer();
-		Alarm alarm;
-
+		
+		
 		for (int i = 0; i < listOfAlarms.size(); i++) {
-
-			alarm = listOfAlarms.get(i);
-			optionalMessage = alarm.getOptionalMessage();
-
+			
+			final Alarm alarm = listOfAlarms.get(i);
+			
+			isFired = alarm.getIsFired();
 			calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT-"));
-			if (alarm.getTime() - calendar.getTimeInMillis() > 0) {
-
+			
+			if(isFired == false){
+				alarm.setIsFired(true);
 				System.out.println("alarm was set");
 				timer.schedule(new TimerTask() {
 
 					@Override
 					public void run() {
 						System.out.println("alarm fired");
+							
+						optionalMessage = alarm.getOptionalMessage();	
+						result = JOptionPane.showOptionDialog(null, optionalMessage, "Alarm!!", JOptionPane.YES_NO_OPTION, 
+								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
-						int pane = JOptionPane.showOptionDialog(null, optionalMessage, "Alarm!!", JOptionPane.WARNING_MESSAGE, 
-								0, null, buttons, buttons[0]);
+						if (result == JOptionPane.YES_OPTION){
+							
+							snooze();
+							
+						}
+						else if (result == JOptionPane.NO_OPTION){
+							//Logic to delete from file
+							
+						}
+							
 
 					}
 
-				}, alarm.getDate());
-			} else {
-				listOfAlarms.remove(i);
-				System.out.println("removed alarm");
+					}, alarm.getDate());		
+				
 			}
+			
 		}
 
 	}
 	
 	public void runTimer() {
 		
-		AlarmTimer myTimer;
+		timer = new Timer();
+		
 		for (int i = 0; i < listOfTimers.size(); i++){
 			
-		//find out if timers and alarms have been fired
-			//then remove the value from the array that has been fired
-			//then set the new array after the removed value equal to the timerWriter/AlarmWriter 
-		
-			timer = new Timer();
-			myTimer = listOfTimers.get(i);
-			timer.schedule(new TimerTask() {
+			final AlarmTimer myTimer = listOfTimers.get(i);
+			isFired = myTimer.getIsFired();
+			
+			if(isFired == false){
+				
+				myTimer.setIsFired(true);
+				System.out.println("timer set");
+				
+				timer.schedule(new TimerTask() {
 
-			@Override
-			public void run() {
-				System.out.println("alarm fired");
+					@Override
+					public void run() {
+						System.out.println("timer fired");
+						optionalMessage = myTimer.getOptionalMessage();
+
+						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.YES_NO_OPTION, 
+								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						
+						if (result == JOptionPane.YES_OPTION){
+							
+							snooze();
+							
+						}
+						else if (result == JOptionPane.NO_OPTION){
+							//Logic to delete from file
+							
+						}
+						
+					}
+					
+				}, myTimer.getMilliseconds());
 				
 			}
 			
-		}, myTimer.getMilliseconds());
 	}
+	}
+	
+	
+	public void snooze(){
+		
+		System.out.println("snooze fired");
+		snooze = new Timer();
+		snooze.schedule(new TimerTask(){
+		
+		
+			@Override
+			public void run(){
+				
+				int snoozeRes = JOptionPane.showOptionDialog(null, "Snooze Alarm", "Snooze", JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				
+				if(snoozeRes == JOptionPane.YES_OPTION){
+					snooze();
+					
+				}
+				else if(snoozeRes == JOptionPane.NO_OPTION){
+					//Logic to delete alarm 
+				
+				}
+
+			}
+		}, 60000);
+		
 	}
 
 }

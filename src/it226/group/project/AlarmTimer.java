@@ -1,6 +1,5 @@
 package it226.group.project;
 
-import java.util.Timer;
 import java.util.Date;
 
 /**
@@ -16,8 +15,8 @@ public class AlarmTimer extends Alarm {
         super();
     }
 
-    public AlarmTimer(Date date, int hours, int minutes, int seconds, String optionalMessage) {
-        super(date, optionalMessage);
+    public AlarmTimer(Date date, int hours, int minutes, int seconds, String optionalMessage, boolean isFired) {
+        super(date, optionalMessage, isFired);
         milliseconds = (seconds * 1000) + (minutes * 60000) + (hours * 3600000);
         date = new Date(milliseconds);
         this.setDate(date);

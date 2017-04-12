@@ -1,5 +1,13 @@
 package it226.group.project;
 
+import static it226.group.project.UI.getAlarmDate;
+import static it226.group.project.UI.getAlarmMessage;
+import static it226.group.project.UI.getAlarmTime;
+import static it226.group.project.UI.getTimerHr;
+import static it226.group.project.UI.getTimerMessage;
+import static it226.group.project.UI.getTimerMins;
+import static it226.group.project.UI.getTimerSecs;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -7,8 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.swing.*;
-import static it226.group.project.UI.*;
+import javax.swing.JButton;
 
 /**
  * @author Brandon Manke
@@ -35,7 +42,7 @@ public class ClockListeners implements ActionListener {
 	String hour;
 	String minute;
 	String seconds;
-	
+	boolean isFired = false;
 	String fullDate;
 	
 	Countdown countdown = new Countdown();
@@ -64,7 +71,7 @@ public class ClockListeners implements ActionListener {
 			
 			
 			//create new alarm object with parameters and write to json file
-			Alarm alarm = new Alarm(finalDate, alarmMessageEntered);
+			Alarm alarm = new Alarm(finalDate, alarmMessageEntered, isFired);
 			
 			//get total time of date and time entered and add together
 			long liftoffTime = finalDate.getTime() + finalTimer.getTime() - TIME_ZONE_MS;
@@ -94,7 +101,7 @@ public class ClockListeners implements ActionListener {
 
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
-			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered);
+			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered, isFired);
 			
 			
 			timer.writeToJson();

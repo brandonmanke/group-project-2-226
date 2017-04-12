@@ -1,11 +1,11 @@
 package it226.group.project;
 
-import com.google.gson.Gson;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
 
 /**
  * @author Brandon Manke
@@ -30,13 +30,10 @@ public final class TimerWriter {
 
         try (FileWriter writer2 = new FileWriter(file)) {
             gson.toJson(list, writer2);
-            System.out.println("IN TIMER WRITER, AFTER JSON");
+            //System.out.println("IN TIMER WRITER, AFTER JSON");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //list = ReadingFromJson.readFromJson();
-        for (AlarmTimer t : ReadingFromJson.timersFromJson()) {
-            System.out.println("Things in timer json: " + t.getTime());
-        }
+        
     }
 }

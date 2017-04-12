@@ -10,15 +10,17 @@ import java.util.Date;
 public class Alarm {
     private Date date;
     private String optionalMessage;
+    private boolean isFired;
 
     public Alarm() {
         super();
     }
     
 
-    public Alarm(Date date, String optionalMessage) {
+    public Alarm(Date date, String optionalMessage, boolean isFired) {
         this.date = date;
         this.optionalMessage = optionalMessage;
+        this.isFired = isFired;
         
     }
 
@@ -34,6 +36,8 @@ public class Alarm {
     public long getTime() { return date.getTime(); }
 
     public String getOptionalMessage() { return optionalMessage; }
+    
+    public boolean getIsFired(){return isFired; }
 
     // Setters
 
@@ -47,6 +51,10 @@ public class Alarm {
 
     public void setOptionalMessage(String optionalMessage) {
         this.optionalMessage = optionalMessage;
+    }
+    
+    public void setIsFired(boolean isFired){
+    	this.isFired = isFired;
     }
 
 }
