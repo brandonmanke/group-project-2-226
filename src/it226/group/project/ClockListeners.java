@@ -15,6 +15,7 @@ import static it226.group.project.UI.getTimerSecs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,6 +48,7 @@ public class ClockListeners implements ActionListener {
 	String seconds;
 	
 	String fullDate;
+	String fullTime;
 	
 	Countdown countdown = new Countdown();
 
@@ -65,17 +67,21 @@ public class ClockListeners implements ActionListener {
 			minute = getAlarmMin().getText();
 			seconds = getAlarmSec().getText();
 			
+			fullDate = month + "/" + day + "/" + year;
+			fullTime = hour + ":" + minute + ":" + seconds;
+			
+			
 			String alarmMessageEntered = getAlarmMessage().getText();
 			
 			//try to parse the input to a Date type
-			//try {
-			//	finalDate = startDate.parse(alarmDateEntered);
-			//	finalTimer = timerFormat.parse(alarmTimeEntered);
+			try {
+				finalDate = startDate.parse(fullDate);
+				finalTimer = timerFormat.parse(fullTime);
 				
-			//} catch (ParseException e1) {
+			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
-			//	e1.printStackTrace();
-			//}
+				e1.printStackTrace();
+			}
 			
 			
 			
@@ -95,7 +101,7 @@ public class ClockListeners implements ActionListener {
 			alarm.writeToJson();
 			countdown.runAlarm();
 			
-		}
+			}
 		
 		//if button name equals timer, do alarm actions
 		if (buttonName.equals("timer")) {
@@ -114,8 +120,10 @@ public class ClockListeners implements ActionListener {
 			//create new myTimer object with parameters and write to json file
 			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered);
 			timer.writeToJson();
+			countdown.runTimer();
 		}
 
 	}
 
-}
+	}
+

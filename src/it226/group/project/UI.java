@@ -122,6 +122,8 @@ public class UI extends JFrame {
 	    timePanel.add(new JLabel(":"));
 	    timePanel.add(alarmSec);
 	    
+	    
+	   
 		
 		//Adding the components to the panels 
 		alarmPanel.add(headerLabelAlarm);
@@ -148,6 +150,8 @@ public class UI extends JFrame {
 		//add names to JButtons
 		addAlarmButton.setName("alarm");
 		addTimerButton.setName("timer");
+		
+		
 
 		main.setVisible(true);
 		

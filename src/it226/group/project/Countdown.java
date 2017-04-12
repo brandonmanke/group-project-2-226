@@ -16,6 +16,7 @@ public class Countdown {
 	Calendar calendar;
 
 	ArrayList<Alarm> listOfAlarms = AlarmWriter.getList();
+	ArrayList<AlarmTimer> listOfTimers = TimerWriter.getList();
 
 	public void runAlarm() {
 		timer = new Timer();
@@ -44,6 +45,30 @@ public class Countdown {
 			}
 		}
 
+	}
+	
+	public void runTimer() {
+		
+		AlarmTimer myTimer;
+		for (int i = 0; i < listOfTimers.size(); i++){
+			
+		//find out if timers and alarms have been fired
+			//then remove the value from the array that has been fired
+			//then set the new array after the removed value equal to the timerWriter/AlarmWriter 
+			
+			
+			timer = new Timer();
+			myTimer = listOfTimers.get(i);
+			timer.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				System.out.println("alarm fired");
+				
+			}
+			
+		}, myTimer.getMilliseconds());
+	}
 	}
 
 }
