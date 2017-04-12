@@ -1,8 +1,6 @@
 package it226.group.project;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Timer;
 
 /**
  * @author Brandon Manke

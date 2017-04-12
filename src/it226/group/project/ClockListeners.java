@@ -26,7 +26,7 @@ public class ClockListeners implements ActionListener {
 	
 	//timer format
 	DateFormat timerFormat = new SimpleDateFormat("hh:mm:ss a");
-	Date finalTimer;
+	Date finalTimer; 
 	
 	
 	String year;
@@ -63,19 +63,16 @@ public class ClockListeners implements ActionListener {
 			}
 			
 			
-			
-			
-			
 			//create new alarm object with parameters and write to json file
 			Alarm alarm = new Alarm(finalDate, alarmMessageEntered);
 			
 			//get total time of date and time entered and add together
 			long liftoffTime = finalDate.getTime() + finalTimer.getTime() - TIME_ZONE_MS;
-			alarm.setDate(new Date(liftoffTime));
+			alarm.setDate(new Date(liftoffTime)); 
 
 			System.out.println(alarm.getDate());
-			System.out.println(alarm.getTime());		
-			System.out.println(alarm.getOptionalMessage());
+			//System.out.println(alarm.getTime());		
+			//System.out.println(alarm.getOptionalMessage());
 
 			alarm.writeToJson();
 			countdown.runAlarm();
@@ -98,7 +95,10 @@ public class ClockListeners implements ActionListener {
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
 			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered);
+			
+			
 			timer.writeToJson();
+			countdown.runTimer();
 		}
 
 	}
