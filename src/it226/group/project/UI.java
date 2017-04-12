@@ -1,6 +1,7 @@
 package it226.group.project;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -22,9 +23,15 @@ public class UI extends JFrame {
 	private JTabbedPane tabbedPane;
 	private JPanel alarmPanel;
 	private JPanel timerPanel;
+	private JPanel datePanel;
+	private JPanel timePanel;
 	
-	private static JTextField alarmDate;
-	private static JTextField alarmTime;
+	private static JTextField alarmYr;
+	private static JTextField alarmMonth;
+	private static JTextField alarmDay;
+	private static JTextField alarmHr;
+	private static JTextField alarmMin;
+	private static JTextField alarmSec;
 	private static JTextField alarmMessage;
 	private static JTextField timerMins;
 	private static JTextField timerSecs;
@@ -71,9 +78,14 @@ public class UI extends JFrame {
 		headerLabelTimer.setForeground(Color.blue);
 		
 		//Text fields for two panels 		
-		alarmDate = new JTextField();
-		alarmTime = new JTextField();
+		alarmYr = new JTextField();
+		alarmMonth = new JTextField();
+		alarmDay = new JTextField();
+		alarmHr = new JTextField();
+		alarmMin = new JTextField();
+		alarmSec = new JTextField();
 		alarmMessage = new JTextField();
+		
 		timerMins = new JTextField();
 		timerSecs = new JTextField();
 		timerMessage = new JTextField();
@@ -96,12 +108,27 @@ public class UI extends JFrame {
 		addTimerButton.addActionListener(new ClockListeners());
 		addAlarmButton.addActionListener(new ClockListeners());
 		
+	    datePanel = new JPanel(new FlowLayout());
+	    datePanel.add(alarmYr);
+	    datePanel.add(new JLabel("/"));
+	    datePanel.add(alarmMonth);
+	    datePanel.add(new JLabel("/"));
+	    datePanel.add(alarmDay);
+
+	    timePanel = new JPanel(new FlowLayout());
+	    timePanel.add(alarmHr);
+	    timePanel.add(new JLabel(":"));
+	    timePanel.add(alarmMin);
+	    timePanel.add(new JLabel(":"));
+	    timePanel.add(alarmSec);
+	    
+		
 		//Adding the components to the panels 
 		alarmPanel.add(headerLabelAlarm);
 		alarmPanel.add(dateLabel);
-		alarmPanel.add(alarmDate);
+		alarmPanel.add(datePanel);
 		alarmPanel.add(timeLabel);
-		alarmPanel.add(alarmTime);
+		alarmPanel.add(timePanel);
 		alarmPanel.add(alarmMessLabel);
 		alarmPanel.add(alarmMessage);
 		alarmPanel.add(addAlarmButton);
@@ -130,13 +157,30 @@ public class UI extends JFrame {
 
 	}
 	
-	public static JTextField getAlarmDate(){
-		return alarmDate;
+	public static JTextField getAlarmYr(){
+		return alarmYr;
 	}
 	
-	public static JTextField getAlarmTime(){
-		return alarmTime;
+	public static JTextField getAlarmMonth(){
+		return alarmMonth;
 	}
+	
+	public static JTextField getAlarmDay(){
+		return alarmDay;
+	}
+	
+	public static JTextField getAlarmHr(){
+		return alarmHr;
+	}
+	
+	public static JTextField getAlarmMin(){
+		return alarmMin;
+	}
+	
+	public static JTextField getAlarmSec(){
+		return alarmSec;
+	}
+	
 	
 	public static JTextField getAlarmMessage(){
 		return alarmMessage;

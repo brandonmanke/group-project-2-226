@@ -1,14 +1,24 @@
 package it226.group.project;
 
+import static it226.group.project.UI.getAlarmDay;
+import static it226.group.project.UI.getAlarmHr;
+import static it226.group.project.UI.getAlarmMessage;
+import static it226.group.project.UI.getAlarmMin;
+import static it226.group.project.UI.getAlarmMonth;
+import static it226.group.project.UI.getAlarmSec;
+import static it226.group.project.UI.getAlarmYr;
+import static it226.group.project.UI.getTimerHr;
+import static it226.group.project.UI.getTimerMessage;
+import static it226.group.project.UI.getTimerMins;
+import static it226.group.project.UI.getTimerSecs;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.swing.*;
-import static it226.group.project.UI.*;
+import javax.swing.JButton;
 
 /**
  * @author Brandon Manke
@@ -48,19 +58,24 @@ public class ClockListeners implements ActionListener {
 		//if button name equals alarm, do alarm actions
 		if (buttonName.equals("alarm")) {
 			
-			String alarmDateEntered = getAlarmDate().getText();
-			String alarmTimeEntered = getAlarmTime().getText();
+			year = getAlarmYr().getText();
+			month = getAlarmMonth().getText();
+			day = getAlarmDay().getText();
+			hour = getAlarmHr().getText();
+			minute = getAlarmMin().getText();
+			seconds = getAlarmSec().getText();
+			
 			String alarmMessageEntered = getAlarmMessage().getText();
 			
 			//try to parse the input to a Date type
-			try {
-				finalDate = startDate.parse(alarmDateEntered);
-				finalTimer = timerFormat.parse(alarmTimeEntered);
+			//try {
+			//	finalDate = startDate.parse(alarmDateEntered);
+			//	finalTimer = timerFormat.parse(alarmTimeEntered);
 				
-			} catch (ParseException e1) {
+			//} catch (ParseException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			//	e1.printStackTrace();
+			//}
 			
 			
 			
