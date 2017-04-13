@@ -22,6 +22,12 @@ public final class AlarmWriter {
         AlarmWriter.list = list;
     }
 
+    public static Alarm removeElement(int index) {
+        Alarm temp = list.get(index);
+        list.remove(index);
+        return temp;
+    }
+
     public static void addToJson(Alarm obj) {
         list.add(obj);
         Gson gson = new Gson();
@@ -31,9 +37,15 @@ public final class AlarmWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //list = ReadingFromJson.readFromJson();
-       /* for (Alarm a : ReadingFromJson.alarmsFromJson()) {
-            System.out.println("Things in alarm json: " + a.getTime());
-        }*/
+    }
+
+    public static void addToJson() {
+        Gson gson = new Gson();
+        File file = new File("data/alarms.json");
+        try (FileWriter writer = new FileWriter(file)) {
+            gson.toJson(list, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

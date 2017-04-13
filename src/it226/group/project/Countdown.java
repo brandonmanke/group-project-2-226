@@ -27,8 +27,6 @@ public class Countdown {
 	ArrayList<Alarm> listOfAlarms = AlarmWriter.getList();
 	ArrayList<AlarmTimer> listOfTimers = TimerWriter.getList();
 	
-
-	
 	Object[] options = {"Snooze", "Dismiss"};
 	
 	public void runAlarm() {
@@ -57,15 +55,18 @@ public class Countdown {
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
 						if (result == JOptionPane.YES_OPTION){
-							
-							snooze();
+							snooze(alarm);
 							
 						}
 						else if (result == JOptionPane.NO_OPTION){
-							//Logic to delete from file
-							
+							// Logic to delete from file
+							// TODO run alarm
+							// alarm obj
+							// run alarm or timer, once it goes off
+							// exit app open json, alarm should be gone
+							deleteAlarms(alarm);
+							System.out.println("after delete in snooze");
 						}
-							
 
 					}
 
@@ -81,12 +82,12 @@ public class Countdown {
 		
 		timer = new Timer();
 		
-		for (int i = 0; i < listOfTimers.size(); i++){
+		for (int i = 0; i < listOfTimers.size(); i++) {
 			
 			final AlarmTimer myTimer = listOfTimers.get(i);
 			isFired = myTimer.getIsFired();
 			
-			if(isFired == false){
+			if (isFired == false) {
 				
 				myTimer.setIsFired(true);
 				System.out.println("timer set");
@@ -102,13 +103,13 @@ public class Countdown {
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
 						if (result == JOptionPane.YES_OPTION){
-							
-							snooze();
-							
+							snooze(myTimer);
 						}
 						else if (result == JOptionPane.NO_OPTION){
 							//Logic to delete from file
-							
+							// TODO run timer
+							// myTimer obj
+							deleteAlarms(myTimer);
 						}
 						
 					}
@@ -117,12 +118,17 @@ public class Countdown {
 				
 			}
 			
+		}
 	}
-	}
-	
-	
-	public void snooze(){
-		
+
+	/**
+	 * Need to check if timer or alarm in NO_OPTION
+	 */
+	public void snooze(Alarm obj) {
+
+		final AlarmTimer tempTimer = (AlarmTimer) obj;
+		final Alarm tempAlarm = obj;
+
 		System.out.println("snooze fired");
 		snooze = new Timer();
 		snooze.schedule(new TimerTask(){
@@ -135,12 +141,19 @@ public class Countdown {
 						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				
 				if(snoozeRes == JOptionPane.YES_OPTION){
-					snooze();
-					
+					if (tempAlarm instanceof AlarmTimer)
+						snooze(tempTimer);
+					else
+						snooze(tempAlarm);
 				}
 				else if(snoozeRes == JOptionPane.NO_OPTION){
 					//Logic to delete alarm 
-				
+					// TODO delete alarm or timer
+					//deleteAlarms();
+					if (tempAlarm instanceof AlarmTimer)
+						deleteAlarms(tempTimer);
+					else
+						deleteAlarms(tempAlarm);
 				}
 
 			}
@@ -148,4 +161,29 @@ public class Countdown {
 		
 	}
 
+	/**
+	 * Deleting alarm or timer object and writing it back to file
+	 * Checks if alarm/timer exists in writer class then removes it from respected arraylist
+	 * then it writes the updated arraylist back to the file.
+	 * @param { Alarm } obj
+	 */
+	public void deleteAlarms(Alarm obj) {
+		if (obj instanceof AlarmTimer) {
+			// .indexOf returns -1 if no element is found in array
+			// so we check if item is in writer array
+			int index = TimerWriter.getList().indexOf(obj);
+			if (index != -1) {
+				System.out.println("removing timer in index");
+				TimerWriter.removeElement(index);
+				TimerWriter.addToJson();
+			}
+		} else {
+			int index = AlarmWriter.getList().indexOf(obj);
+			if (index != -1) {
+				System.out.println("removing alarm in index");
+				AlarmWriter.removeElement(index);
+				AlarmWriter.addToJson();
+			}
+		}
+	}
 }

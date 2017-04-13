@@ -116,8 +116,7 @@ public class UI extends JFrame {
 		timerPanel.add(timerMessLabel);
 		timerPanel.add(timerMessage);
 		timerPanel.add(addTimerButton);
-		
-		
+
 		//add names to JButtons
 		addAlarmButton.setName("alarm");
 		addTimerButton.setName("timer");
