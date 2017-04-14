@@ -55,7 +55,7 @@ public class Countdown {
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
 						if (result == JOptionPane.YES_OPTION){
-							snooze(alarm);
+							snooze();
 							
 						}
 						else if (result == JOptionPane.NO_OPTION){
@@ -103,7 +103,7 @@ public class Countdown {
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
 						if (result == JOptionPane.YES_OPTION){
-							snooze(myTimer);
+							snooze();
 						}
 						else if (result == JOptionPane.NO_OPTION){
 							//Logic to delete from file
@@ -124,10 +124,7 @@ public class Countdown {
 	/**
 	 * Need to check if timer or alarm in NO_OPTION
 	 */
-	public void snooze(Alarm obj) {
-
-		final AlarmTimer tempTimer = (AlarmTimer) obj;
-		final Alarm tempAlarm = obj;
+	public void snooze() {
 
 		System.out.println("snooze fired");
 		snooze = new Timer();
@@ -141,19 +138,12 @@ public class Countdown {
 						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				
 				if(snoozeRes == JOptionPane.YES_OPTION){
-					if (tempAlarm instanceof AlarmTimer)
-						snooze(tempTimer);
-					else
-						snooze(tempAlarm);
+
 				}
 				else if(snoozeRes == JOptionPane.NO_OPTION){
 					//Logic to delete alarm 
 					// TODO delete alarm or timer
-					//deleteAlarms();
-					if (tempAlarm instanceof AlarmTimer)
-						deleteAlarms(tempTimer);
-					else
-						deleteAlarms(tempAlarm);
+					//deleteAlarms() needs to somehow get the object that is being snoozed:
 				}
 
 			}
