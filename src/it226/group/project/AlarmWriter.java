@@ -42,6 +42,7 @@ public final class AlarmWriter {
     public static void addToJson() {
         Gson gson = new Gson();
         File file = new File("data/alarms.json");
+        
         try (FileWriter writer = new FileWriter(file)) {
             gson.toJson(list, writer);
         } catch (IOException e) {

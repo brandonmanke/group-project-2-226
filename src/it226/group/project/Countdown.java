@@ -30,7 +30,6 @@ public class Countdown {
 	ArrayList<AlarmTimer> listOfTimers = TimerWriter.getList();
 	
 	Object[] options = {"Snooze", "Dismiss"};
-	Object[] timerOptions = {"Dismiss"};
 	
 	AlarmTimer myTimer;
 	
@@ -104,16 +103,17 @@ public class Countdown {
 						System.out.println("timer fired");
 						optionalMessage = myTimer.getOptionalMessage();
 
-						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.CANCEL_OPTION, 
-								JOptionPane.QUESTION_MESSAGE, null, timerOptions, timerOptions);
+						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.YES_NO_OPTION, 
+								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
-							if (result == JOptionPane.CANCEL_OPTION){
+						if (result == JOptionPane.YES_OPTION){
+							snooze(myTimer);
+						}
+						else if (result == JOptionPane.NO_OPTION){
 							//Logic to delete from file
 							// TODO run timer
 							// myTimer obj
-							
 							deleteAlarms(myTimer);
-							myTimer.setIsFired(true);
 						}
 						
 					}
