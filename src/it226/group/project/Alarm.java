@@ -11,6 +11,7 @@ public class Alarm {
     private Date date;
     private String optionalMessage;
     private boolean isFired;
+    private int numSnooze = 0;
 
     public Alarm() {
         super();
@@ -38,6 +39,8 @@ public class Alarm {
     public String getOptionalMessage() { return optionalMessage; }
     
     public boolean getIsFired(){return isFired; }
+    
+    public int getNumSnooze(){ return numSnooze; }
 
     // Setters
 
@@ -55,6 +58,10 @@ public class Alarm {
     
     public void setIsFired(boolean isFired){
     	this.isFired = isFired;
+    }
+    
+    public void setNumSnooze(int num){
+    	this.numSnooze = num;
     }
 
 }

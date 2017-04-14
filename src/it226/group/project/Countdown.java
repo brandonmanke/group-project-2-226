@@ -23,11 +23,17 @@ public class Countdown {
 	boolean isFired;
 	
 	int result;
+	
+	int numSnooze = 0;
 
 	ArrayList<Alarm> listOfAlarms = AlarmWriter.getList();
 	ArrayList<AlarmTimer> listOfTimers = TimerWriter.getList();
 	
 	Object[] options = {"Snooze", "Dismiss"};
+	Object[] timerOptions = {"Dismiss"};
+	
+	AlarmTimer myTimer;
+	
 	
 	public void runAlarm() {
 		
@@ -56,7 +62,6 @@ public class Countdown {
 						
 						if (result == JOptionPane.YES_OPTION){
 							snooze(alarm);
-							
 						}
 						else if (result == JOptionPane.NO_OPTION){
 							// Logic to delete from file
@@ -84,7 +89,7 @@ public class Countdown {
 		
 		for (int i = 0; i < listOfTimers.size(); i++) {
 			
-			final AlarmTimer myTimer = listOfTimers.get(i);
+			myTimer = listOfTimers.get(i);
 			isFired = myTimer.getIsFired();
 			
 			if (isFired == false) {
@@ -99,17 +104,16 @@ public class Countdown {
 						System.out.println("timer fired");
 						optionalMessage = myTimer.getOptionalMessage();
 
-						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.YES_NO_OPTION, 
-								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.CANCEL_OPTION, 
+								JOptionPane.QUESTION_MESSAGE, null, timerOptions, timerOptions);
 						
-						if (result == JOptionPane.YES_OPTION){
-							snooze(myTimer);
-						}
-						else if (result == JOptionPane.NO_OPTION){
+							if (result == JOptionPane.CANCEL_OPTION){
 							//Logic to delete from file
 							// TODO run timer
 							// myTimer obj
+							
 							deleteAlarms(myTimer);
+							myTimer.setIsFired(true);
 						}
 						
 					}
@@ -126,32 +130,31 @@ public class Countdown {
 	 */
 	public void snooze(Alarm obj) {
 
-		final AlarmTimer tempTimer = (AlarmTimer) obj;
+		//final AlarmTimer tempTimer = (AlarmTimer) obj;
 		final Alarm tempAlarm = obj;
 
 		System.out.println("snooze fired");
 		snooze = new Timer();
+		tempAlarm.setNumSnooze(++numSnooze);
 		snooze.schedule(new TimerTask(){
 		
 		
 			@Override
 			public void run(){
 				
-				int snoozeRes = JOptionPane.showOptionDialog(null, "Snooze Alarm", "Snooze", JOptionPane.YES_NO_OPTION, 
+				int snoozeRes = JOptionPane.showOptionDialog(null, "Snooze Alarm", "Snooze Count: " + tempAlarm.getNumSnooze(), JOptionPane.YES_NO_OPTION, 
 						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				
 				if(snoozeRes == JOptionPane.YES_OPTION){
-					if (tempAlarm instanceof AlarmTimer)
-						snooze(tempTimer);
-					else
 						snooze(tempAlarm);
+
 				}
 				else if(snoozeRes == JOptionPane.NO_OPTION){
 					//Logic to delete alarm 
 					// TODO delete alarm or timer
 					//deleteAlarms();
 					if (tempAlarm instanceof AlarmTimer)
-						deleteAlarms(tempTimer);
+						deleteAlarms(myTimer);
 					else
 						deleteAlarms(tempAlarm);
 				}

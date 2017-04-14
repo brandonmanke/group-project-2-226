@@ -15,6 +15,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
+    	
         File file = new File("data/alarms.json");
         File file2 = new File("data/timers.json");
         ReadingFromJson.initializeFile(file);
@@ -22,5 +23,6 @@ public class Main {
         AlarmWriter.initializeWriter(ReadingFromJson.alarmsFromJson());
         TimerWriter.initializeWriter(ReadingFromJson.timersFromJson());
         UI gui = new UI();
+
     }
 }
