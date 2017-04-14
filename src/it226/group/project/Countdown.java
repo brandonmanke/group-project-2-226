@@ -121,7 +121,7 @@ public class Countdown {
 					}
 					
 					
-				}, myTimer.getMilliseconds());
+				}, myTimer.getDate());
 				
 			}
 			

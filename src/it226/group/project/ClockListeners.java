@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -36,6 +39,11 @@ public class ClockListeners implements ActionListener {
 	DateFormat timerFormat = new SimpleDateFormat("hh:mm:ss a");
 	Date finalTimer; 
 	
+	//dat and timer format
+	DateFormat dateAndTimeFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+	Date finalDateAndTime; 
+	
+	Calendar cal;
 	
 	String year;
 	String month;
@@ -103,14 +111,39 @@ public class ClockListeners implements ActionListener {
 			
 			//change string input to an int.... still needs exception handling
 			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+	        LocalDateTime now = LocalDateTime.now();
+	        String stringDate = dtf.format(now).toString();
+	        
+	        try {
+				finalDateAndTime = dateAndTimeFormat.parse(stringDate);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			try {
 			int timerHoursInt = Integer.parseInt(timerHoursEntered);
 			int timerMinsInt = Integer.parseInt(timerMinsEntered);
 			int timerSecsInt = Integer.parseInt(timerSecsEntered);
 			
+			
+	        
+	        
+	        
+			
+			
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
-			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered, isFired);
+			AlarmTimer timer = new AlarmTimer(finalDateAndTime, timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered, isFired);
+			
+			long milliseconds = (timerSecsInt * 1000) + (timerMinsInt * 60000) + (timerHoursInt * 3600000);
+			
+			timer.setMilliseconds(milliseconds);
+			
+			long liftofftime = finalDateAndTime.getTime() + timer.getMilliseconds();
+	
+			timer.setDate(new Date(liftofftime));
 		
 			timer.writeToJson();
 			
