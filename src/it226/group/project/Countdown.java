@@ -1,5 +1,6 @@
 package it226.group.project;
 
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -38,7 +39,6 @@ public class Countdown {
 		
 		timer = new Timer();
 		
-		
 		for (int i = 0; i < listOfAlarms.size(); i++) {
 			
 			final Alarm alarm = listOfAlarms.get(i);
@@ -55,9 +55,11 @@ public class Countdown {
 					public void run() {
 						System.out.println("alarm fired");
 							
-						optionalMessage = alarm.getOptionalMessage();	
+						optionalMessage = alarm.getOptionalMessage();
+						Toolkit.getDefaultToolkit().beep();
 						result = JOptionPane.showOptionDialog(null, optionalMessage, "Alarm!!", JOptionPane.YES_NO_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						
 						
 						
 						if (result == JOptionPane.YES_OPTION){
@@ -103,7 +105,8 @@ public class Countdown {
 					public void run() {
 						System.out.println("timer fired");
 						optionalMessage = myTimer.getOptionalMessage();
-
+						
+						Toolkit.getDefaultToolkit().beep();						
 						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.YES_NO_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
@@ -192,10 +195,5 @@ public class Countdown {
 				AlarmWriter.addToJson();
 			}
 		}
-	}
-	
-	public void displayResult(){
-		JOptionPane.showOptionDialog(null, optionalMessage, "Alarm!!", JOptionPane.YES_NO_OPTION, 
-				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 	}
 }

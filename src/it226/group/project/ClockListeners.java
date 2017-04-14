@@ -126,13 +126,7 @@ public class ClockListeners implements ActionListener {
 			int timerHoursInt = Integer.parseInt(timerHoursEntered);
 			int timerMinsInt = Integer.parseInt(timerMinsEntered);
 			int timerSecsInt = Integer.parseInt(timerSecsEntered);
-			
-			
-	        
-	        
-	        
-			
-			
+		
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
 			AlarmTimer timer = new AlarmTimer(finalDateAndTime, timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered, isFired);
@@ -148,7 +142,7 @@ public class ClockListeners implements ActionListener {
 			timer.writeToJson();
 			
 			} catch(NumberFormatException numExcep){
-				JOptionPane.showOptionDialog(null, "Please enter a date/time with the correct format", "ERROR!!", JOptionPane.YES_NO_OPTION, 
+				JOptionPane.showOptionDialog(null, "Please enter NUMBERS into ALL fields", "ERROR!!", JOptionPane.YES_NO_OPTION, 
 						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			}
 			countdown.runTimer();
