@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  * @author Brandon Manke
@@ -46,6 +47,8 @@ public class ClockListeners implements ActionListener {
 	String fullDate;
 	
 	Countdown countdown = new Countdown();
+	
+	String[] options = {"Okay"};
 
 	public void actionPerformed(ActionEvent e) {
 		
@@ -64,10 +67,7 @@ public class ClockListeners implements ActionListener {
 				finalDate = startDate.parse(alarmDateEntered);
 				finalTimer = timerFormat.parse(alarmTimeEntered);
 				
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+
 			
 			
 			//create new alarm object with parameters and write to json file
@@ -82,7 +82,14 @@ public class ClockListeners implements ActionListener {
 			//System.out.println(alarm.getOptionalMessage());
 
 			alarm.writeToJson();
+			
+			} catch (ParseException e1) {
+				JOptionPane.showOptionDialog(null, "Please enter a date/time with the correct format", "ERROR!!", JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			}
 			countdown.runAlarm();
+			
+			
 			
 		}
 		
@@ -95,16 +102,22 @@ public class ClockListeners implements ActionListener {
 			String timerMessageEntered = getTimerMessage().getText();
 			
 			//change string input to an int.... still needs exception handling
+			
+			try {
 			int timerHoursInt = Integer.parseInt(timerHoursEntered);
 			int timerMinsInt = Integer.parseInt(timerMinsEntered);
 			int timerSecsInt = Integer.parseInt(timerSecsEntered);
-
+			
 			// Add date object to this
 			//create new myTimer object with parameters and write to json file
 			AlarmTimer timer = new AlarmTimer(new Date(), timerHoursInt, timerMinsInt, timerSecsInt, timerMessageEntered, isFired);
-			
-			
+		
 			timer.writeToJson();
+			
+			} catch(NumberFormatException numExcep){
+				JOptionPane.showOptionDialog(null, "Please enter a date/time with the correct format", "ERROR!!", JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			}
 			countdown.runTimer();
 		}
 

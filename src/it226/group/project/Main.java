@@ -2,6 +2,7 @@ package it226.group.project;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * TODO: Test writing to json and reading back from it
@@ -23,6 +24,21 @@ public class Main {
         AlarmWriter.initializeWriter(ReadingFromJson.alarmsFromJson());
         TimerWriter.initializeWriter(ReadingFromJson.timersFromJson());
         UI gui = new UI();
+        //readAtStart();
+        
 
     }
+    
+ /*   public static void readAtStart(){
+    	ArrayList<Alarm> testList = AlarmWriter.getList();
+    	Countdown countdown = new Countdown();
+    	
+    	for(int i = 0; i < testList.size(); i++){
+    		if(testList.get(i).getIsFired()){
+    			countdown.deleteAlarms(testList.get(i));
+    		}
+    	} 
+    } */
 }
+
+
