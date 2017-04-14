@@ -60,7 +60,6 @@ public class Countdown {
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						
 						
-						
 						if (result == JOptionPane.YES_OPTION){
 							snooze(alarm);
 						}
@@ -95,22 +94,18 @@ public class Countdown {
 			
 			if (isFired == false) {
 				
-				
 				myTimer.setIsFired(true);
 				System.out.println("timer set");
 				
 				timer.schedule(new TimerTask() {
-						
+
 					@Override
 					public void run() {
-						
 						System.out.println("timer fired");
 						optionalMessage = myTimer.getOptionalMessage();
 
 						result = JOptionPane.showOptionDialog(null, optionalMessage, "Timer!!", JOptionPane.YES_NO_OPTION, 
 								JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-						
-						displayResult();
 						
 						if (result == JOptionPane.YES_OPTION){
 							snooze(myTimer);
@@ -167,8 +162,6 @@ public class Countdown {
 					else
 						deleteAlarms(tempAlarm);
 				}
-				else
-					return;
 
 			}
 		}, 60000);

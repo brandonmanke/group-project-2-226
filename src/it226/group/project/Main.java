@@ -2,6 +2,8 @@ package it226.group.project;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +26,11 @@ public class Main {
         AlarmWriter.initializeWriter(ReadingFromJson.alarmsFromJson());
         TimerWriter.initializeWriter(ReadingFromJson.timersFromJson());
         UI gui = new UI();
-        //readAtStart();
+        
+        Countdown countdown = new Countdown();
+        countdown.runAlarm();
+        countdown.runTimer();
+       
         
 
     }
